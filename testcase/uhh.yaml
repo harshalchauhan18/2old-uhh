@@ -1,0 +1,73 @@
+# Testcase for ergom_base and diatioms module, developed by Lee et al 2018.
+instances:
+  nutrient:
+    model: uhh_ergom_split_base
+    parameters:
+      sfl_po: 0.055 #surface exchage rate
+      sfl_am: 0.3600 #surface exchage rate
+      sfl_ni:  0.4500 #surface exchage rate
+      a0: 31.25 #!surface flux
+      a1:  14.603 #!surface flux
+      a2: 0.4025  #!surface flux
+      pvel: 5.0 # piston velocity md-1
+      w_de: -3.0 # detritus sinking velocity d-1
+      kc: 0.03 # shelf shading
+      tbg: 14.0 # temperature background
+      beta_bg: 1.0 # temperature background
+      topt: 20.0 # optimum temperature
+      lan: 0.1 #  nitrification constant d-1
+      oan: 0.01 # oxygen parameter
+      beta_an: 0.11 # temperature control /C
+      anmx: 0.05 # anammox rate d-1
+      lda: 0.005 # detritus mineralization constant d-1
+      tda: 13.0 # temperature control
+      beta_da: 20.0 # temperature control
+      sr: 0.0625 #!redfield ratio(p/n)
+      s1: 5.3 #reduced nitrate/oxydized deritus
+      s2: 6.625 #!oxygen demand/recycled nitrigen
+      s3: 8.625 #!oxygen production related to N
+      s4: 2.0 #  nitrification
+      fluff: .false.  #!fluffy layer
+      fl_initial: 0.0
+      lds: 3.5 # sedimenation rate md-1
+      lsd: 25.0 # resuspension rate d-1
+      tau_crit: 0.07 # critical stress
+      lsa: 0.0001 # sediment mineralization constant d-1
+      bsa: 0.15 #  temperature control
+      ph1: 0.15 # release of phosphate
+      ph2: 0.10 # release of phosphate
+    initialization:
+      det: 5.0 
+      amm: 0.1 
+      nit: 5.0 
+      pho:  2.0
+      oxy: 100.0
+    coupling:
+      
+  diatoms:
+    model: uhh_diatoms
+    parameters:
+      mumax: 0.95 # maximum growth rate
+      vmort:  0.02 # mortality rate of vegetative cells
+      rmort: 0.02 # mortality rate of resting cells
+      rkn: 0.50 # half-saturation constant
+      rdepo:  0.0000056 # deposion rate
+      sr: 0.0625 # redfield ratio(p/n)
+      trate_veg_res: 0.04 # maximum transition rate d-1
+      trate_res_veg: 0.20 # maximum transition rate d-1
+      w_dia: -0.12 #  sinking rate *******
+      rkc: 0.03 # self-shading
+      alpha: 0.24 # initial slope of P-I curve
+      use_mean_growth: .false.
+      mdt: 3600.0 # 
+   
+    initialization:
+      veg: 0.01
+      res: 0.01
+    coupling:
+      ammonium_target: nutrient/amm
+      nitrate_target: nutrient/nit
+      phosphate_target: nutrient/pho
+      mortality_target: nutrient/det
+      oxygen_target: nutrient/oxy
+      
