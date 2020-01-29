@@ -72,7 +72,6 @@
    class (type_uhh_halogen), intent(inout), target :: self
    integer,                        intent(in)          :: configunit
 
-!   real(rk)     :: c_initial=0.1
    real(rk)     :: pp_air=-99.
    real(rk)     :: beta=0.0_rk   ! nmol/mmolN
    real(rk)     :: l_con=0.0_rk
